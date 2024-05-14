@@ -24,7 +24,7 @@ export class LoginComponent {
       next: (response)=>{
         console.log(response.status)
         this.loginSuccess.emit(true);
-        this.Router.navigate(['/samplepage'])
+        this.Router.navigate(['/report'])
       }
     }
     )

@@ -16,12 +16,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'dashboard', component: DashboardComponent},  // Bảo vệ trang Dashboard
-<<<<<<< HEAD
-    { path: 'samplepage', component: SamplepageComponent },
-=======
-    { path: 'content', component: ContentComponent },  // Bảo vệ trang Content
     { path: 'report', component: SamplepageComponent },
->>>>>>> 6dbe426cfaa13bd734472bfd5242b7c6c41e85dd
     {path:'connection',component:ConnectionComponent},
     {path:'query',component:QueryComponent},
     {path:'datalist',component:DataListComponent},

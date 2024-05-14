@@ -11,7 +11,7 @@ export class RegisterService {
   URl ="http://localhost:8080/register"
   Register(username: String, password: String, Email: String):Observable<any>{
   const request ={
-    userName : username,
+    username : username,
     password : password,
     Email : Email
   }
