@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './../header/header.component';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { ReportService } from '../service/report.service';
 import { GroupReport } from '../DTO/groupReports';
 import { FormsModule } from '@angular/forms';
 import { report } from '../DTO/report';
+import { ReportService } from '../service/report.service';
 
 @Component({
   selector: 'app-samplepage',
@@ -29,7 +29,7 @@ export class SamplepageComponent implements OnInit {
   toggleSubMenu2() {
     this.submenuVisible2 = !this.submenuVisible2;
   }
-  constructor(private report: ReportService ){}
+  constructor(private report : ReportService ){}
   ngOnInit(): void {
      this.report.GetReportdataForm().subscribe(
       res =>{
@@ -41,12 +41,11 @@ export class SamplepageComponent implements OnInit {
 
   public selectedReport?: report = {"maNhom":"","tenNhom":"","ghichu": 0}
   SelectedItem (report : report):void{
-
-      this.selectedReport = report;
-     this.manhom = this.selectedReport.maNhom
-     this.tennhom = this.selectedReport.tenNhom
+    this.selectedReport = report;
+    this.manhom = this.selectedReport.maNhom
+    this.tennhom = this.selectedReport.tenNhom
     this.ghichu = this.selectedReport.ghichu
-      console.log(this.selectedReport)
+    console.log(this.selectedReport)
   }
   sayhelo(): void{
     console.log("helo")
