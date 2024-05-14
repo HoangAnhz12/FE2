@@ -23,12 +23,12 @@ export class SamplepageComponent implements OnInit {
   password: string = '';
   groupReport : GroupReport[] = [];
 
-  toggleSubMenu1() {
-    this.submenuVisible1 = !this.submenuVisible1;
+  openIndex: number | null = null;
+
+  toggleMenu(index: number) {
+    this.openIndex = this.openIndex === index ? null : index;
   }
-  toggleSubMenu2() {
-    this.submenuVisible2 = !this.submenuVisible2;
-  }
+
   constructor(private report : ReportService ){}
   ngOnInit(): void {
      this.report.GetReportdataForm().subscribe(
