@@ -35,7 +35,7 @@
                     <form #Form1 = "ngForm" >
                         <div class="title form-group ">
                           <label for="exampleInputEmail1">Mã Nhóm</label>
-                          <input type="text" class="form2 form-control" [(ngModel)]="manhom"  [ngModelOptions]="{standalone: true}"> 
+                          <input type="text" class="form2 form-control" [(ngModel)]="manhom"  [ngModelOptions]="{standalone: true}" [disabled]="isEditing"> 
                         </div>
                         <div class="title form-group">
                           <label >Tên Nhóm</label>
@@ -51,12 +51,13 @@
                                 <option selected>Open this select menu</option>
                                 <option *ngFor="let group of groupReport" [value]="group.id">{{ group.groupReport }}</option>
                               </select>
-                        </div>
+                        </div>  
                         <div class="button-group">
-                            <button type="button" class="btn btn-primary" (click)="createReport()">Thêm</button>
-                            <button type="button" class="btn btn-primary" (click)="updateReport()">Sửa</button>
-                            <button type="button" class="btn btn-primary" (click)="resetForm()">Hủy</button>
-                            <button type="button" class="btn btn-primary" (click)="deleteReport()">Xóa</button>
+                            <!-- <button type="button" class="btn btn-primary" (click)="saveReport()" [disabled]="!isFormValid()">Lưu</button> -->
+                            <button type="button" class="btn btn-primary" (click)="createReport()"[disabled]="isReportSelected()">Thêm</button>
+                            <button type="button" class="btn btn-primary" (click)="updateReport()" [disabled]="!isReportSelected()">Sửa</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteReport()" [disabled]="!isReportSelected()">Xóa</button>
+                            <button type="button" class="btn btn-secondary" (click)="resetForm()">Hủy</button>
                           </div>
                        
                       </form>

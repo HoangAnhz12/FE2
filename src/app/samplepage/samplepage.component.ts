@@ -26,6 +26,7 @@ export class SamplepageComponent implements OnInit {
   groupReport : GroupReport[] = [];
   selectedGroupId: number | undefined; // Thêm thuộc tính này
   selectedGroup?: GroupReport;
+  isEditing: boolean=false;
 
   openIndex: number | null = null;
 
@@ -44,6 +45,7 @@ export class SamplepageComponent implements OnInit {
   }
   resetForm(): void {
     this.selectedReport = { maNhom: '', tenNhom: '', ghichu: 0, };
+    this.isEditing=false;
     this.manhom = '';
     this.tennhom = '';
     this.ghichu = undefined;
@@ -52,6 +54,7 @@ export class SamplepageComponent implements OnInit {
   public selectedReport?: report = {"maNhom":"","tenNhom":"","ghichu": 0}
   SelectedItem (report : report):void{
     this.selectedReport = report;
+    this.isEditing=true;
     this.manhom = this.selectedReport.maNhom
     this.tennhom = this.selectedReport.tenNhom
     this.ghichu = this.selectedReport.ghichu
@@ -64,13 +67,64 @@ export class SamplepageComponent implements OnInit {
   sayhelo(): void{
     console.log("helo")
   }
+  enableAddMode():void{
+    this.resetForm();
+    this.isEditing=true;
+  }
+  editReport(): void {
+    if (this.selectedReport) {
+      this.isEditing = false;
+    }
+  }
+  isFormValid(): boolean {
+    return !!this.manhom && !!this.tennhom && this.ghichu !== undefined;
+  }
 
+  isReportSelected(): boolean {
+    return this.selectedReport !== undefined && this.selectedReport.maNhom !== '';
+  }
+  // saveReport(): void {
+  //   const groupId = this.selectedGroupId;
+  //   const report: report = {
+  //     maNhom: this.manhom || '',
+  //     tenNhom: this.tennhom || '',
+  //     ghichu: this.ghichu || 0
+  //   };
+
+  //   if (groupId !== undefined && report.maNhom) {
+  //     if (this.isEditing) {
+  //       this.reportService.updateGroupReport(groupId, report.maNhom, report).subscribe(
+  //         () => {
+  //           console.log('Report updated successfully');
+  //           this.ngOnInit();
+  //           this.resetForm();
+  //         },
+  //         error => {
+  //           console.error('Error updating report:', error);
+  //         }
+  //       );
+  //     } else {
+  //       this.reportService.createGroupReport(groupId, report).subscribe(
+  //         () => {
+  //           console.log('Report created successfully');
+  //           this.ngOnInit();
+  //           this.resetForm();
+  //         },
+  //         error => {
+  //           console.error('Error creating report:', error);
+  //         }
+  //       );
+  //     }
+  //   } else {
+  //     console.error('Selected report does not have valid group or report ID');
+  //   }
+  // }
 
   createReport(): void {
     if (this.selectedGroupId !== undefined) { // Check if selectedGroupId is defined
         const newReport: report = {
-            maNhom: this.manhom || '',
-            tenNhom: this.tennhom || '',
+            maNhom: this.manhom  ,
+            tenNhom: this.tennhom  ,
             ghichu: this.ghichu || 0
         };
         this.reportService.createGroupReport(this.selectedGroupId, newReport).subscribe(() => {
@@ -83,12 +137,12 @@ export class SamplepageComponent implements OnInit {
         console.error('Group ID is not selected');
     }
 }
-
+//
 updateReport(): void {
   if (this.selectedReport?.maNhom && this.selectedGroupId !== undefined) {
     const updatedReport: report = {
-      maNhom: this.manhom || '',
-      tenNhom: this.tennhom || '',
+      maNhom: this.manhom ,
+      tenNhom: this.tennhom ,
       ghichu: this.ghichu || 0
     };
     this.reportService.updateGroupReport(this.selectedGroupId,this.selectedReport.maNhom,updatedReport).subscribe(
