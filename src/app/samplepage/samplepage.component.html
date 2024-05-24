@@ -47,18 +47,17 @@
                         </div>
                         <div class=" title form-group">
                             <label>Nhóm Cha</label>
-                            <select class="form2 form-select  form-control " aria-label="Default select example">
+                            <select class="form2 form-select  form-control " [(ngModel)]="selectedGroupId" [ngModelOptions]="{standalone: true}" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option *ngFor="let group of groupReport" [value]="group.id">{{ group.groupReport }}</option>
                               </select>
                         </div>
                         <div class="button-group">
-                            <button  class="btn btn-primary">Sửa</button>
-                            <button  class="btn btn-primary">Lưu</button>
-                            <button  class="btn btn-primary">Thêm</button>
-                            <button  class="btn btn-primary">Hủy</button>
-                            <button  class="btn btn-primary">Xóa</button>
-                        </div>
+                            <button type="button" class="btn btn-primary" (click)="createReport()">Thêm</button>
+                            <button type="button" class="btn btn-primary" (click)="updateReport()">Sửa</button>
+                            <button type="button" class="btn btn-primary" (click)="resetForm()">Hủy</button>
+                            <button type="button" class="btn btn-primary" (click)="deleteReport()">Xóa</button>
+                          </div>
                        
                       </form>
                     </div>
