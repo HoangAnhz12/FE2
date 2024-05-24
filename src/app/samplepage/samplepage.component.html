@@ -35,7 +35,7 @@
                     <form #Form1 = "ngForm" >
                         <div class="title form-group ">
                           <label for="exampleInputEmail1">Mã Nhóm</label>
-                          <input type="text" class="form2 form-control" [(ngModel)]="manhom"  [ngModelOptions]="{standalone: true}"> 
+                          <input type="text" class="form2 form-control" [(ngModel)]="manhom"  [ngModelOptions]="{standalone: true}" [disabled]="isEditing"> 
                         </div>
                         <div class="title form-group">
                           <label >Tên Nhóm</label>
@@ -47,18 +47,18 @@
                         </div>
                         <div class=" title form-group">
                             <label>Nhóm Cha</label>
-                            <select class="form2 form-select  form-control " aria-label="Default select example">
+                            <select class="form2 form-select  form-control " [(ngModel)]="selectedGroupId" [ngModelOptions]="{standalone: true}" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option *ngFor="let group of groupReport" [value]="group.id">{{ group.groupReport }}</option>
                               </select>
-                        </div>
+                        </div>  
                         <div class="button-group">
-                            <button  class="btn btn-primary">Sửa</button>
-                            <button  class="btn btn-primary">Lưu</button>
-                            <button  class="btn btn-primary">Thêm</button>
-                            <button  class="btn btn-primary">Hủy</button>
-                            <button  class="btn btn-primary">Xóa</button>
-                        </div>
+                            <!-- <button type="button" class="btn btn-primary" (click)="saveReport()" [disabled]="!isFormValid()">Lưu</button> -->
+                            <button type="button" class="btn btn-primary" (click)="createReport()"[disabled]="isReportSelected()">Thêm</button>
+                            <button type="button" class="btn btn-primary" (click)="updateReport()" [disabled]="!isReportSelected()">Sửa</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteReport()" [disabled]="!isReportSelected()">Xóa</button>
+                            <button type="button" class="btn btn-secondary" (click)="resetForm()">Hủy</button>
+                          </div>
                        
                       </form>
                     </div>
