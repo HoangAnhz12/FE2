@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { ConnectService } from './../service/connect.service';
 import { Connect } from './../DTO/connect';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, afterRender } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { connect } from 'http2';
+import { FormsModule } from '@angular/forms';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-connection',
   standalone: true,
-  imports: [HeaderComponent,CommonModule],
+  imports: [HeaderComponent,CommonModule,FormsModule],
   templateUrl: './connection.component.html',
   styleUrl: './connection.component.css'
 })
@@ -21,6 +23,7 @@ export class ConnectionComponent implements OnInit {
   Password:string| undefined;
   newConnect: Connect = { MaKN: '', TenKN: '', URL: '', User: '', Password: '' };  // Biến để thêm hoặc chỉnh sửa kết nối
   isEditMode: boolean = false;  // Kiểm tra chế độ chỉnh sửa
+  Notifitions: string ="";
 
   constructor(private connectService: ConnectService) { }
 
@@ -28,9 +31,11 @@ export class ConnectionComponent implements OnInit {
     this.getAllConnects();
   }
   public selectedConnect?: Connect = {"MaKN":"","TenKN":"","URL": "","User":"","Password":""}
+  public selectedConnect_2?: Connect = this.selectedConnect;
   SelectedItem (connect: Connect):void{
     this.selectedConnect =connect;
     // this.disable();
+  
     this.MaKN = this.selectedConnect.MaKN
     this.TenKN = this.selectedConnect.TenKN
     this.URL = this.selectedConnect.URL
@@ -68,13 +73,21 @@ export class ConnectionComponent implements OnInit {
       this.getAllConnects();
     });
   }
-
+  deleteConnect_ID(): void {
+    this.connectService.deleteConnect(this.MaKN).subscribe(() => {
+      this.getAllConnects();
+    });
+  }
 
   resetForm(): void {
     this.newConnect = { MaKN: '', TenKN: '', URL: '', User: '', Password: '' };
     this.isEditMode = false;
   }
+  checkConnection (): void{
+      this.connectService.CheckConnection(this.URL).subscribe(res => {
+        alert(res.message)
+      });
+  }
 
-  
 }
   
