@@ -35,28 +35,28 @@
                     <form #Form1 = "ngForm" >
                         <div class="title form-group ">
                           <label for="exampleInputEmail1">Mã Nhóm</label>
-                          <input type="text" class="form2 form-control" [(ngModel)]="manhom"  [ngModelOptions]="{standalone: true}" [disabled]="isEditing"> 
+                          <input type="text" class="form2 form-control" [(ngModel)]="manhom"  [ngModelOptions]="{standalone: true}" [disabled]="isEditing1"> 
                         </div>
                         <div class="title form-group">
                           <label >Tên Nhóm</label>
-                          <input type="text"  class="form2 form-control"  [(ngModel)]="tennhom"  [ngModelOptions]="{standalone: true}">
+                          <input type="text"  class="form2 form-control"  [(ngModel)]="tennhom"  [ngModelOptions]="{standalone: true}" [disabled]="isEditing">
                         </div>
                         <div class="title form-group">
                             <label >Ghi Chú</label>
-                            <input type="number"  class="form2 form-control"  [(ngModel)]="ghichu"  [ngModelOptions]="{standalone: true}" >
+                            <input type="number"  class="form2 form-control"  [(ngModel)]="ghichu"  [ngModelOptions]="{standalone: true}" [disabled]="isEditing">
                         </div>
                         <div class=" title form-group">
                             <label>Nhóm Cha</label>
-                            <select class="form2 form-select  form-control " [(ngModel)]="selectedGroupId" [ngModelOptions]="{standalone: true}" aria-label="Default select example">
+                            <select class="form2 form-select  form-control " [(ngModel)]="selectedGroupId" [ngModelOptions]="{standalone: true}" [disabled]="isEditing" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option *ngFor="let group of groupReport" [value]="group.id">{{ group.groupReport }}</option>
                               </select>
                         </div>  
                         <div class="button-group">
-                            <!-- <button type="button" class="btn btn-primary" (click)="saveReport()" [disabled]="!isFormValid()">Lưu</button> -->
                             <button type="button" class="btn btn-primary" (click)="createReport()"[disabled]="isReportSelected()">Thêm</button>
-                            <button type="button" class="btn btn-primary" (click)="updateReport()" [disabled]="!isReportSelected()">Sửa</button>
-                            <button type="button" class="btn btn-danger" (click)="deleteReport()" [disabled]="!isReportSelected()">Xóa</button>
+                            <button type="button" class="btn btn-primary" (click)="enable()" [disabled]="!isReportSelected() || isEditMode">Sửa</button>
+                            <button type="button" class="btn btn-primary save" (click)="updateReport()" [disabled]="!isReportSelected()" >Lưu</button>
+                            <button type="button" class="btn btn-danger" (click)="deleteReport()">Xóa</button>
                             <button type="button" class="btn btn-secondary" (click)="resetForm()">Hủy</button>
                           </div>
                        
