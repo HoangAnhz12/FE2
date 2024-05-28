@@ -29,7 +29,7 @@
                             <tbody>
                                 <tr *ngFor="let connect of connects;let i =index" (click)="SelectedItem(connect)">
                                     <td>{{ i + 1 }}</td>
-                                    <td>{{ connect.TenKN }}</td>
+                                    <td>{{ connect.TenKN }}</td>    
                                     <td>{{ connect.MaKN }}</td>
                                     <td>{{ connect.URL }}</td>
                                     <td>{{ connect.User }}</td>
@@ -46,35 +46,36 @@
                         <hr style="border-top: 3px; color: rgb(39, 36, 36);">
                         <div class="table-connection">  
                             <div>
-                                <form>
+                                <form #form2="ngForm">
                                     <div class="title form-group ">
                                       <label for="exampleInputEmail1">Mã Kết Nói</label>
-                                      <input class="form2 form-control">
+                                      <input class="form2 form-control" [(ngModel)]="MaKN" [ngModelOptions]="{standalone: true}"  >
                                     </div>
                                     <div class="title form-group">
                                       <label >Tên Kết Nói</label>
-                                      <input  class="form2 form-control" >
+                                      <input  class="form2 form-control" [(ngModel)]="TenKN" [ngModelOptions]="{standalone:true}">
                                     </div>
                                     <div class="title form-group">
                                         <label >URL</label>
-                                        <input  class="form2 form-control" >
+                                        <input  class="form2 form-control" [(ngModel)]="URL" [ngModelOptions]="{standalone:true}" >
+                                        
                                     </div>
                                     <div class=" title form-group">
                                         <label>Cnn User</label>
-                                        <input  class="form2 form-control" >
+                                        <input  class="form2 form-control" [(ngModel)]="User" [ngModelOptions]="{standalone:true}" >
                                     </div>
                                     <div class=" title form-group">
                                         <label>Cnn Password</label>
-                                        <input type="password"  class="form2 form-control" >
+                                        <input type="password"  class="form2 form-control" [(ngModel)]="Password" [ngModelOptions]="{standalone:true}">
                                     </div>
                                     <div class="button-group">
                                         <button  class="btn btn-primary">Sửa</button>
                                         <button  class="btn btn-primary">Lưu</button>
                                         <button  class="btn btn-primary">Thêm</button>
                                         <button  class="btn btn-primary">Hủy</button>
-                                        <button  class="btn btn-primary">Xóa</button>
+                                        <button  class="btn btn-primary" (click)="deleteConnect_ID()">Xóa</button>
                                     </div>
-                                    <button style="width: 50% ; margin-top: 5px ;margin-left: 25%;"  class="btn btn-primary">Kiểm Tra Kết N</button>
+                                    <button style="width: 50% ; margin-top: 5px ;margin-left: 25%;"  class="btn btn-primary" (click)="checkConnection()">Kiểm Tra Kết Nối</button>
                                   </form>
                             </div>
 
