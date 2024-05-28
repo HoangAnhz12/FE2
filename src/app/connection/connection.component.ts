@@ -34,14 +34,13 @@ export class ConnectionComponent implements OnInit {
   public selectedConnect_2?: Connect = this.selectedConnect;
   SelectedItem (connect: Connect):void{
     this.selectedConnect =connect;
-    // this.disable();
-  
+
     this.MaKN = this.selectedConnect.MaKN
     this.TenKN = this.selectedConnect.TenKN
     this.URL = this.selectedConnect.URL
     this.User= this.selectedConnect.User
     this.Password= this.selectedConnect.Password
-    console.log(this.selectedConnect)
+
   }
 
   getAllConnects(): void {
@@ -49,22 +48,31 @@ export class ConnectionComponent implements OnInit {
   }
 
   createConnect(): void {
-    if (this.newConnect.MaKN && this.newConnect.TenKN) {
-      this.connectService.createConnect(this.newConnect).subscribe(connect => {
-        this.connects.push(connect);
-        this.resetForm();
-      });
-    } else {
-      console.error('MaKN and TenKN are required');
+
+    // if (this.newConnect.MaKN && this.newConnect.TenKN) {
+    //   this.connectService.createConnect(this.newConnect).subscribe(connect => {
+    //     this.connects.push(connect);
+    //     this.resetForm();
+    //   });
+    // } else {
+    //   console.error('MaKN and TenKN are required');
+    // }
+    if (this.MaKN && this.TenKN){
+      this.newConnect = {MaKN :this.MaKN,TenKN:this.TenKN,URL:this.URL,User:this.User,Password:this.Password}
+      this.connectService.createConnect(this.newConnect).subscribe(()=>{
+        this.getAllConnects();
+      })
     }
   }
 
   updateConnect(): void {
-    if (this.selectedConnect && this.selectedConnect.MaKN) {
-      this.connectService.updateConnect(this.selectedConnect.MaKN, this.selectedConnect).subscribe(() => {
+    if (this.MaKN){
+      this.newConnect = {MaKN :this.MaKN,TenKN:this.TenKN,URL:this.URL,User:this.User,Password:this.Password}
+      console.log(this.newConnect)
+      this.connectService.updateConnect(this.MaKN,this.newConnect).subscribe(res=>{
         this.getAllConnects();
-        this.resetForm();
-      });
+        alert(res)
+      })
     }
   }
 
@@ -78,15 +86,21 @@ export class ConnectionComponent implements OnInit {
       this.getAllConnects();
     });
   }
-
   resetForm(): void {
-    this.newConnect = { MaKN: '', TenKN: '', URL: '', User: '', Password: '' };
-    this.isEditMode = false;
+    this.MaKN =""
+    this.TenKN=""
+    this.URL ="",
+    this.User="",
+    this.Password="" 
+    console.log('đã nhấn hủy');
   }
   checkConnection (): void{
       this.connectService.CheckConnection(this.URL).subscribe(res => {
         alert(res.message)
       });
+  }
+  showData():void {
+    alert(`${this.MaKN},${this.TenKN},${this.URL},${this.User},${this.Password},`)
   }
 
 }
