@@ -47,8 +47,8 @@
                         <div class="table-connection">  
                             <div>
                                 <form #form2="ngForm">
-                                    <div class="title form-group ">
-                                      <label for="exampleInputEmail1">Mã Kết Nói</label>
+                                    <div class="title form-group  ">
+                                      <label>Mã Kết Nói</label>
                                       <input class="form2 form-control" [(ngModel)]="MaKN" [ngModelOptions]="{standalone: true}"  >
                                     </div>
                                     <div class="title form-group">
@@ -70,9 +70,9 @@
                                     </div>
                                     <div class="button-group">
                                         <button  class="btn btn-primary">Sửa</button>
-                                        <button  class="btn btn-primary">Lưu</button>
-                                        <button  class="btn btn-primary">Thêm</button>
-                                        <button  class="btn btn-primary">Hủy</button>
+                                        <button  class="btn btn-primary" (click)="updateConnect()">Lưu</button>
+                                        <button  class="btn btn-primary" (click)="createConnect()">Thêm</button>
+                                        <button  class="btn btn-primary" (click)="resetForm()">Hủy</button>
                                         <button  class="btn btn-primary" (click)="deleteConnect_ID()">Xóa</button>
                                     </div>
                                     <button style="width: 50% ; margin-top: 5px ;margin-left: 25%;"  class="btn btn-primary" (click)="checkConnection()">Kiểm Tra Kết Nối</button>
