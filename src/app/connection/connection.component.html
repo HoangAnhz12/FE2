@@ -27,13 +27,13 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tên</td>
-                                    <td>Mã</td>
-                                    <td>URL</td>
-                                    <td>Cnn User</td>
-                                    <td>Cnn Password</td>
+                                <tr *ngFor="let connect of connects;let i =index" (click)="SelectedItem(connect)">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ connect.TenKN }}</td>
+                                    <td>{{ connect.MaKN }}</td>
+                                    <td>{{ connect.URL }}</td>
+                                    <td>{{ connect.User }}</td>
+                                    <td>{{ connect.Password }}</td>
                                 </tr>
                             </tbody>
                           </table>
