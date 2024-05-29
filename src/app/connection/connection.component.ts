@@ -24,6 +24,7 @@ export class ConnectionComponent implements OnInit {
   newConnect: Connect = { MaKN: '', TenKN: '', URL: '', User: '', Password: '' };  // Biến để thêm hoặc chỉnh sửa kết nối
   isEditMode: boolean = false;  // Kiểm tra chế độ chỉnh sửa
   Notifitions: string ="";
+  selectedIndex: number | null = null;
 
   constructor(private connectService: ConnectService) { }
 
@@ -32,9 +33,9 @@ export class ConnectionComponent implements OnInit {
   }
   public selectedConnect?: Connect = {"MaKN":"","TenKN":"","URL": "","User":"","Password":""}
   public selectedConnect_2?: Connect = this.selectedConnect;
-  SelectedItem (connect: Connect):void{
+  SelectedItem (connect: Connect, index: number):void{
     this.selectedConnect =connect;
-
+    this.selectedIndex = index;
     this.MaKN = this.selectedConnect.MaKN
     this.TenKN = this.selectedConnect.TenKN
     this.URL = this.selectedConnect.URL
@@ -102,6 +103,8 @@ export class ConnectionComponent implements OnInit {
   showData():void {
     alert(`${this.MaKN},${this.TenKN},${this.URL},${this.User},${this.Password},`)
   }
+
+ 
 
 }
   
