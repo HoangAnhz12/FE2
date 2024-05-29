@@ -80,4 +80,7 @@ table.table-list-connection thead tr input{
 
 }
   
-
+.selected td{
+    background-color: #79c5f8 !important; /* Màu sáng xám cho hàng được chọn */
+    
+  }
