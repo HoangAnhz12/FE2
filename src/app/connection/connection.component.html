@@ -27,7 +27,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let connect of connects;let i =index" (click)="SelectedItem(connect)">
+                                <tr  *ngFor="let connect of connects;let i =index" (click)="SelectedItem(connect,i) " [ngClass]="{'selected': selectedIndex === i}" >
                                     <td>{{ i + 1 }}</td>
                                     <td>{{ connect.TenKN }}</td>    
                                     <td>{{ connect.MaKN }}</td>

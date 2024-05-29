@@ -86,7 +86,7 @@ export class SamplepageComponent implements OnInit {
   
 
   createReport(): void {
-    if (this.selectedGroupId !== undefined) { // Check if selectedGroupId is defined
+    if (this.selectedGroupId !== undefined) { 
         const newReport: report = {
             maNhom: this.manhom  ,
             tenNhom: this.tennhom  ,
