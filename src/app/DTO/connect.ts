@@ -4,5 +4,4 @@ export interface Connect{
     URL?: string;
     User?:string;
     Password?:string;
-    [key: string]: any; 
 }
