@@ -79,6 +79,9 @@ table.table-list-connection thead tr input{
     margin: 0 1%;
 
 }
+.SelectedItem{
+    background-color: cornflowerblue;
+}
   
 .selected td{
     background-color: #79c5f8 !important; /* Màu sáng xám cho hàng được chọn */
