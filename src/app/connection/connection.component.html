@@ -49,29 +49,29 @@
                                 <form #form2="ngForm">
                                     <div class="title form-group  ">
                                       <label>Mã Kết Nói</label>
-                                      <input class="form2 form-control" [(ngModel)]="MaKN" [ngModelOptions]="{standalone: true}"  >
+                                      <input class="form2 form-control" [(ngModel)]="MaKN" [ngModelOptions]="{standalone: true}"  [disabled]="isEditing1">
                                     </div>
                                     <div class="title form-group">
                                       <label >Tên Kết Nói</label>
-                                      <input  class="form2 form-control" [(ngModel)]="TenKN" [ngModelOptions]="{standalone:true}">
+                                      <input  class="form2 form-control" [(ngModel)]="TenKN" [ngModelOptions]="{standalone:true}"  [disabled]="isEditing">
                                     </div>
                                     <div class="title form-group">
                                         <label >URL</label>
-                                        <input  class="form2 form-control" [(ngModel)]="URL" [ngModelOptions]="{standalone:true}" >
+                                        <input  class="form2 form-control" [(ngModel)]="URL" [ngModelOptions]="{standalone:true}"   [disabled]="isEditing">
                                         
                                     </div>
                                     <div class=" title form-group">
                                         <label>Cnn User</label>
-                                        <input  class="form2 form-control" [(ngModel)]="User" [ngModelOptions]="{standalone:true}" >
+                                        <input  class="form2 form-control" [(ngModel)]="User" [ngModelOptions]="{standalone:true}"  [disabled]="isEditing">
                                     </div>
                                     <div class=" title form-group">
                                         <label>Cnn Password</label>
-                                        <input type="password"  class="form2 form-control" [(ngModel)]="Password" [ngModelOptions]="{standalone:true}">
+                                        <input type="password"  class="form2 form-control" [(ngModel)]="Password" [ngModelOptions]="{standalone:true}"  [disabled]="isEditing">
                                     </div>
                                     <div class="button-group">
-                                        <button  class="btn btn-primary">Sửa</button>
-                                        <button  class="btn btn-primary" (click)="updateConnect()">Lưu</button>
-                                        <button  class="btn btn-primary" (click)="createConnect()">Thêm</button>
+                                        <button  class="btn btn-primary" (click)="createConnect()" [disabled]="isReportSelected()">Thêm</button>
+                                        <button type="button" class="btn btn-primary" (click)="enable()" [disabled]="!isReportSelected() || isEditMode">Sửa</button>
+                                        <button  class="btn btn-primary" (click)="updateConnect()" [disabled]="!isEditMode" >Lưu</button>
                                         <button  class="btn btn-primary" (click)="resetForm()">Hủy</button>
                                         <button  class="btn btn-primary" (click)="deleteConnect_ID()">Xóa</button>
                                     </div>

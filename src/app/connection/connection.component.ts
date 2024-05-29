@@ -21,6 +21,8 @@ export class ConnectionComponent implements OnInit {
   URL:string |undefined;
   User:string |undefined;
   Password:string| undefined;
+  isEditing: boolean=false;
+  isEditing1:boolean=false;
   newConnect: Connect = { MaKN: '', TenKN: '', URL: '', User: '', Password: '' };  // Biến để thêm hoặc chỉnh sửa kết nối
   isEditMode: boolean = false;  // Kiểm tra chế độ chỉnh sửa
   Notifitions: string ="";
@@ -34,7 +36,7 @@ export class ConnectionComponent implements OnInit {
   public selectedConnect_2?: Connect = this.selectedConnect;
   SelectedItem (connect: Connect):void{
     this.selectedConnect =connect;
-
+    this.disable();
     this.MaKN = this.selectedConnect.MaKN
     this.TenKN = this.selectedConnect.TenKN
     this.URL = this.selectedConnect.URL
@@ -61,6 +63,7 @@ export class ConnectionComponent implements OnInit {
       this.newConnect = {MaKN :this.MaKN,TenKN:this.TenKN,URL:this.URL,User:this.User,Password:this.Password}
       this.connectService.createConnect(this.newConnect).subscribe(()=>{
         this.getAllConnects();
+        this.resetForm();
       })
     }
   }
@@ -71,6 +74,7 @@ export class ConnectionComponent implements OnInit {
       console.log(this.newConnect)
       this.connectService.updateConnect(this.MaKN,this.newConnect).subscribe(res=>{
         this.getAllConnects();
+        this.resetForm();
         alert(res)
       })
     }
@@ -78,6 +82,7 @@ export class ConnectionComponent implements OnInit {
 
   deleteConnect(id: string): void {
     this.connectService.deleteConnect(id).subscribe(() => {
+      this.resetForm();
       this.getAllConnects();
     });
   }
@@ -87,12 +92,16 @@ export class ConnectionComponent implements OnInit {
     });
   }
   resetForm(): void {
+    this.selectedConnect = { MaKN: '', TenKN: '', URL: '',User:'',Password:'' };
     this.MaKN =""
     this.TenKN=""
     this.URL ="",
     this.User="",
     this.Password="" 
     console.log('đã nhấn hủy');
+    this.isEditing=false;
+    this.isEditMode=false;
+    this.isEditing1=false;
   }
   checkConnection (): void{
       this.connectService.CheckConnection(this.URL).subscribe(res => {
@@ -102,6 +111,20 @@ export class ConnectionComponent implements OnInit {
   showData():void {
     alert(`${this.MaKN},${this.TenKN},${this.URL},${this.User},${this.Password},`)
   }
+  disable(): void {
+    this.isEditing=true;
+    this.isEditing1=true;
+  }
+  isReportSelected(): boolean {
+    return this.selectedConnect !==undefined && this.selectedConnect.MaKN !=='';
+  }
+  enable():void{
+    this.isEditing1=true;
+    this.isReportSelected;
+    this.isEditing=false;
+    this.isEditMode = true;
+  }
 
+  
 }
   

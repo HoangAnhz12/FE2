@@ -79,5 +79,8 @@ table.table-list-connection thead tr input{
     margin: 0 1%;
 
 }
+.SelectedItem{
+    background-color: cornflowerblue;
+}
   
 

@@ -51,9 +51,11 @@ export class SamplepageComponent implements OnInit {
   resetForm(): void {
     this.selectedReport = { maNhom: '', tenNhom: '', ghichu: 0, };
     this.isEditing=false;
+    this.isEditing1=false;
     this.manhom = '';
     this.tennhom = '';
     this.ghichu = undefined;
+    this.isEditMode=false;
   }
 
   public selectedReport?: report = {"maNhom":"","tenNhom":"","ghichu": 0}
@@ -79,6 +81,7 @@ export class SamplepageComponent implements OnInit {
     this.isEditing1=true;
     this.isReportSelected;
     this.isEditing=false;
+    this.isEditMode = true;
   }
   
 
@@ -137,6 +140,5 @@ deleteReport(): void {
     console.error('Selected report does not have valid group or report ID');
   }
 }
-
 
 }
