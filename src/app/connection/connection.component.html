@@ -18,12 +18,12 @@
                                   <th>Cnn Password</th>
                               </tr>
                               <tr>
-                                  <th></th>
-                                  <th><input type="text" placeholder="Tìm"></th>
-                                  <th><input type="text" placeholder="Tìm"></th>
-                                  <th><input type="text" placeholder="Tìm"></th>
-                                  <th><input type="text" placeholder="Tìm"></th>
-                                  <th><input type="text" placeholder="Tìm"></th>
+                                <th></th>
+                                <th><input type="text" placeholder="Tìm" (input)="onSearch(1, $event.target)"></th>
+                                <th><input type="text" placeholder="Tìm" (input)="onSearch(2, $event.target)"></th>
+                                <th><input type="text" placeholder="Tìm" (input)="onSearch(3, $event.target)"></th>
+                                <th><input type="text" placeholder="Tìm" (input)="onSearch(4, $event.target)"></th>
+                                <th><input type="text" placeholder="Tìm" (input)="onSearch(5, $event.target)"></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -33,7 +33,7 @@
                                     <td>{{ connect.MaKN }}</td>
                                     <td>{{ connect.URL }}</td>
                                     <td>{{ connect.User }}</td>
-                                    <td>{{ connect.Password }}</td>
+                                    <td>{{ getMaskedPassword(connect.Password) }}</td>
                                 </tr>
                             </tbody>
                           </table>

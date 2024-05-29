@@ -7,6 +7,7 @@ import { connect } from 'http2';
 import { FormsModule } from '@angular/forms';
 import { Console } from 'console';
 
+
 @Component({
   selector: 'app-connection',
   standalone: true,
@@ -27,6 +28,8 @@ export class ConnectionComponent implements OnInit {
   isEditMode: boolean = false;  // Kiểm tra chế độ chỉnh sửa
   Notifitions: string ="";
   selectedIndex: number | null = null;
+  searchTerms: string[] = ['', '', '', '', '', ''];
+  filteredConnects: Connect[] = [];
 
   constructor(private connectService: ConnectService) { }
 
@@ -36,14 +39,15 @@ export class ConnectionComponent implements OnInit {
   public selectedConnect?: Connect = {"MaKN":"","TenKN":"","URL": "","User":"","Password":""}
   public selectedConnect_2?: Connect = this.selectedConnect;
   SelectedItem (connect: Connect, index: number):void{
-    this.selectedConnect =connect;
+    this.selectedConnect = connect;
     this.selectedIndex = index;
+    this.disable();
     this.MaKN = this.selectedConnect.MaKN
     this.TenKN = this.selectedConnect.TenKN
     this.URL = this.selectedConnect.URL
     this.User= this.selectedConnect.User
     this.Password= this.selectedConnect.Password
-
+    // alert(this.Password);
   }
 
   getAllConnects(): void {
@@ -126,6 +130,31 @@ export class ConnectionComponent implements OnInit {
     this.isEditMode = true;
   }
  
-
+  getMaskedPassword(password?: string): string {
+    return password ? '*'.repeat(password.length): '';
+  }
+  onSearch(columnIndex: number, target: EventTarget | null): void {
+    const searchTerm = (target as HTMLInputElement)?.value.trim().toLowerCase();
+    this.searchTerms[columnIndex] = searchTerm;
+  
+    const tableRows = document.querySelectorAll('.table-list-connection tbody tr');
+  
+    tableRows.forEach(row => {
+      const tableRow = row as HTMLTableRowElement;
+      let found = true;
+  
+      // Chuyển đổi HTMLCollection thành mảng và bỏ qua cell đầu tiên
+      Array.from(tableRow.cells).forEach((cell, index) => {
+        if (index === 0) return; // Bỏ qua cell đầu tiên
+        const cellValue = (cell.textContent || '').trim().toLowerCase();
+        if (this.searchTerms[index] && !cellValue.includes(this.searchTerms[index])) {
+          found = false;
+        }
+      });
+  
+      // Hiển thị hoặc ẩn hàng dựa trên kết quả tìm kiếm
+      tableRow.style.display = found ? '' : 'none';
+    });
+  }
 }
   
