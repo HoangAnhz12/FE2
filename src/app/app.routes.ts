@@ -10,6 +10,7 @@ import { QueryComponent } from './query/query.component';
 import { DataListComponent } from './data-list/data-list.component';
 import { DetailDataComponent } from './detail-data/detail-data.component';
 import { ApiComponent } from './api/api.component';
+import { AddQueryComponent } from './query/add-query/add-query.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },  // Điều hướng trang mặc định tới /login
@@ -22,4 +23,5 @@ export const routes: Routes = [
     {path:'datalist',component:DataListComponent},
     {path:'detaildata',component:DetailDataComponent},
     {path:'api',component:ApiComponent},
+    {path:'addQuery',component: AddQueryComponent}
 ];

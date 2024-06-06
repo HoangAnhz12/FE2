@@ -1,0 +1,31 @@
+<div class="modal-container">
+  <div class="modal-content">
+    <h1 class="form-title">Khởi tạo truy vấn</h1>
+    <div class="form-container">
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>ID kết nối</mat-label>
+        <input matInput [(ngModel)]="newQuery.connectionId">
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>ID truy vấn</mat-label>
+        <input matInput [(ngModel)]="newQuery.queryId">
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Tên truy vấn</mat-label>
+        <input matInput [(ngModel)]="newQuery.queryName">
+      </mat-form-field>
+      <mat-form-field class="form-field textarea-field" appearance="fill">
+        <mat-label>SQL</mat-label>
+        <textarea matInput [(ngModel)]="newQuery.sql" rows="4"></textarea>
+      </mat-form-field>
+      <mat-form-field class="form-field textarea-field" appearance="fill">
+        <mat-label>Input Sample</mat-label>
+        <textarea matInput [(ngModel)]="newQuery.inputSample" rows="4"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="button-container">
+      <button mat-button (click)="addQuery()">Khởi tạo</button>
+      <button mat-button (click)="onCancel()">Hủy</button>
+    </div>
+  </div>
+</div>
