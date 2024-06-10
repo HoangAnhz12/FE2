@@ -7,6 +7,7 @@ import { Query } from '../DTO/query';
 import { QueryService } from '../service/query.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { EditQueryComponent } from './edit-query/edit-query.component';
 @Component({
   selector: 'app-query',
   standalone: true,
@@ -24,6 +25,7 @@ export class QueryComponent implements OnInit {
       this.queries = data;
     });
   }
+  
   deleteQuery(id: string): void {
     this.queryService.deleteQuery(id).subscribe(() => {
       this.ngOnInit();
@@ -35,6 +37,17 @@ export class QueryComponent implements OnInit {
     });
 
     dialogRef.componentInstance.queryAdded.subscribe(() => {
+      dialogRef.close();
+      this.ngOnInit();
+    });
+  }
+  openDialogedit(query: Query): void {
+    const dialogRef = this.dialog.open(EditQueryComponent, {
+      width: '600px',
+      data: { query }
+    });
+
+    dialogRef.componentInstance.queryUpdated.subscribe(() => {
       dialogRef.close();
       this.ngOnInit();
     });
