@@ -1,4 +1,5 @@
 
+
 import { Connect } from './../DTO/connect';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -18,6 +19,9 @@ export class QueryService {
   }
   createQuery(query:Query ): Observable<Query>{
     return this.http.post<Query>(`${this.baseUrl}/addQuery`,query);
+  }
+  updateQuery( query:Query): Observable<Query>{
+    return this.http.put<Query>(`${this.baseUrl}/updateQuery/${query.queryId}`,query);
   }
   deleteQuery(id ?:string): Observable<void>{
     return this.http.delete<void>(`${this.baseUrl}/deleteQuery/${id}`);

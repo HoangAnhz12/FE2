@@ -3,11 +3,13 @@
     <h1 class="form-title">Khởi tạo truy vấn</h1>
     <div class="form-container">
       <mat-form-field class="form-field" appearance="fill">
-        <mat-label>ID kết nối</mat-label>
-        <input matInput [(ngModel)]="newQuery.connectionId">
+        <mat-label>Mã kết nối</mat-label>
+        <mat-select [(ngModel)]="newQuery.connectionId" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let connect of connects" [value]="connect.MaKN">{{ connect.MaKN }}</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field" appearance="fill">
-        <mat-label>ID truy vấn</mat-label>
+        <mat-label>Mã truy vấn</mat-label>
         <input matInput [(ngModel)]="newQuery.queryId">
       </mat-form-field>
       <mat-form-field class="form-field" appearance="fill">
