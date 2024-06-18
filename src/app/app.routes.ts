@@ -24,4 +24,5 @@ export const routes: Routes = [
     {path:'detaildata',component:DetailDataComponent},
     {path:'api',component:ApiComponent},
     {path:'addQuery',component: AddQueryComponent}
+
 ];
